@@ -1,0 +1,25 @@
+#ifndef SENSOR_TEMPLATE_H
+#define SENSOR_TEMPLATE_H
+
+template <DHT_11_Temperature T>
+class DHT11  {
+private:
+	int status;
+protected:
+	virtual int _read() = 0;
+	T _data;
+public:
+	DHT11(T val): status(-1), _data(val) {
+	}
+	virtual ~DHT11() {
+	}
+	T data() {
+		return _data;
+	}
+	int read() {
+		status = _read();
+		return status;
+	}
+};
+
+#endif
